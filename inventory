@@ -1,0 +1,22 @@
+all:
+  children:
+    webservers:
+      hosts:
+        demoweb01:
+          ansible_host: 172.31.42.154
+          ansible_user: ec2-user
+          ansible_ssh_private_key_file: demouserkey.prm
+        demoweb02:
+          ansible_host: 172.31.40.220
+          ansible_user: ec2-user
+          ansible_ssh_private_key_file: demouserkey.pem
+    dbservers:
+      hosts:
+        demodb01:
+          ansible_host: 172.31.37.114
+          ansible_user: ec2-user
+          ansible_ssh_private_key_file: demouserkey.pem
+    demoall:
+      children:
+        webservers:
+        dbservers:

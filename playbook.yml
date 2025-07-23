@@ -1,0 +1,25 @@
+- name: Install Apache on Web Servers
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install Apache (httpd)
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+- name: Install MySQL on DB Server
+  hosts: dbservers
+  become: yes
+  tasks:
+    - name: Install MySQL server
+      apt:
+        name: mysql-server
+        state: present
+        update_cache: yes
+
+    - name: Ensure MySQL is running
+      service:
+        name: mysql
+        state: started
+        enabled: true
